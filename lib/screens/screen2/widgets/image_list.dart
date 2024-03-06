@@ -16,6 +16,7 @@ class ImageList extends GetWidget<Screen2Controller> {
 
   @override
   Widget build(BuildContext context) {
+    /// Using Obx
     return Obx(
       () => !controller.isLoading
           ? ListView(
@@ -25,10 +26,23 @@ class ImageList extends GetWidget<Screen2Controller> {
               ],
             )
           : const Center(
-              child: SizedBox.square(
-                  dimension: 24, child: CircularProgressIndicator()),
+              child: SizedBox.square(dimension: 24, child: CircularProgressIndicator()),
             ),
     );
+
+    /// Using GetX => Obx no need <Screen2Controller> & builder
+    ///
+    //   return GetX<Screen2Controller>(
+    // builder: (controller) => !controller.isLoading
+    //     ? ListView(
+    //         controller: scrollController,
+    //         children: [
+    //           ...controller.images.map((image) => ImageItem(image)),
+    //         ],
+    //       )
+    //     : const Center(
+    //         child: SizedBox.square(dimension: 24, child: CircularProgressIndicator()),
+    //       ),
+    // );
   }
 }
-
